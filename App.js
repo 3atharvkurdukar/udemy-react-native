@@ -21,7 +21,7 @@ export default function App() {
     // FlatList automatically detects 'key' or 'id' property as key for each item
     setGoals((goals) => [
       ...goals,
-      { key: Date.now().toString(), value: goalInput },
+      { _id: Date.now().toString(), value: goalInput },
     ]);
     setGoalInput('');
   };
@@ -37,6 +37,7 @@ export default function App() {
         <Button title="ADD" onPress={addGoalHandler} />
       </View>
       <FlatList
+        keyExtractor={(item) => item._id}
         data={goals}
         renderItem={(itemData) => (
           <View style={styles.listItem}>
