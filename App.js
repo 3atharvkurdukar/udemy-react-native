@@ -23,11 +23,13 @@ export default function App() {
           value={goalInput}
           onChangeText={goalInputHandler}
         />
-        <Button title="ADD" style={styles.addButton} onPress={addGoalHandler} />
+        <Button title="ADD" onPress={addGoalHandler} />
       </View>
       <View>
         {goals.map((goal, i) => (
-          <Text key={i}>{goal}</Text>
+          <View style={styles.listItem} key={i}>
+            <Text>{goal}</Text>
+          </View>
         ))}
       </View>
     </View>
@@ -35,11 +37,17 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  screen: { padding: 50 },
+  screen: {
+    paddingTop: 50,
+    paddingBottom: 50,
+    paddingLeft: 16,
+    paddingRight: 16,
+  },
   inputContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginVertical: 16,
   },
   textInput: {
     borderBottomColor: '#e2eaf4',
@@ -47,5 +55,10 @@ const styles = StyleSheet.create({
     width: '80%',
     padding: 4,
   },
-  addButton: { width: '20%' },
+  listItem: {
+    padding: 12,
+    marginVertical: 8,
+    backgroundColor: '#f2f2f2',
+    borderRadius: 8,
+  },
 });
