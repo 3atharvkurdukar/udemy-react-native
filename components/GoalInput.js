@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 
-const GoalInput = ({ addGoalHandler }) => {
+const GoalInput = ({ onAddGoal }) => {
   const [goalInput, setGoalInput] = useState('');
 
   const goalInputHandler = (text) => {
@@ -16,7 +16,7 @@ const GoalInput = ({ addGoalHandler }) => {
   };
 
   const addGoal = () => {
-    addGoalHandler(goalInput);
+    onAddGoal(goalInput);
     setGoalInput('');
   };
 
