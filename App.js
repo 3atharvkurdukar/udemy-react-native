@@ -1,25 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Header from './components/Header';
 
 export default function App() {
-  const [text, setText] = useState(
-    'Open up App.js to start working on your app!'
-  );
   return (
-    <View style={styles.container}>
-      <Text>{text}</Text>
-      <Button title="Click Here" onPress={() => setText('Button clicked!')} />
-      <StatusBar style="auto" />
+    <View style={styles.screen}>
+      <Header title="Guess The Number" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
