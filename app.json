@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "udemy-react-native",
+    "name": "Guess The Number",
     "slug": "udemy-react-native",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -13,9 +13,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
