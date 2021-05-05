@@ -14,9 +14,9 @@ export default function App() {
     <View style={styles.screen}>
       <Header title="Guess The Number" />
       {!!userNumber ? (
-        <StartGameScreen onStartGame={startGameHandler} />
-      ) : (
         <GameScreen userChoice={userNumber} />
+      ) : (
+        <StartGameScreen onStartGame={startGameHandler} />
       )}
     </View>
   );
