@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     marginVertical: 12,
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-600',
   },
   inputContainer: {
     width: 300,

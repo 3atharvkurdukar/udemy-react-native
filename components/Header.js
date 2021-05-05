@@ -12,7 +12,6 @@ const Header = ({ title }) => {
 const styles = StyleSheet.create({
   header: {
     width: '100%',
-    // height: 80,
     paddingVertical: '15%',
     backgroundColor: colors.primary,
     alignItems: 'center',
@@ -21,6 +20,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     color: 'white',
     fontSize: 24,
+    fontFamily: 'Nunito-600',
   },
 });
 

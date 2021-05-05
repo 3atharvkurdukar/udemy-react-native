@@ -1,13 +1,33 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import * as Fonts from 'expo-font';
+import AppLoading from 'expo-app-loading';
 import Header from './components/Header';
 import GameOverScreen from './screens/GameOverScreen';
 import GameScreen from './screens/GameScreen';
 import StartGameScreen from './screens/StartGameScreen';
 
+const fetchFonts = () => {
+  return Fonts.loadAsync({
+    'Nunito-400': require('./assets/fonts/Nunito-Regular.ttf'),
+    'Nunito-600': require('./assets/fonts/Nunito-SemiBold.ttf'),
+  });
+};
+
 export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [guessRounds, setGuessRounds] = useState(0);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  if (!dataLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setDataLoaded(true)}
+        onError={(err) => console.log(err)}
+      />
+    );
+  }
 
   const newGameHandler = () => {
     setGuessRounds(0);
