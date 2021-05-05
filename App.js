@@ -9,8 +9,9 @@ import StartGameScreen from './screens/StartGameScreen';
 
 const fetchFonts = () => {
   return Fonts.loadAsync({
-    'Nunito-400': require('./assets/fonts/Nunito-Regular.ttf'),
-    'Nunito-600': require('./assets/fonts/Nunito-SemiBold.ttf'),
+    'Rubik-400': require('./assets/fonts/Rubik-Regular.ttf'),
+    'Rubik-600': require('./assets/fonts/Rubik-SemiBold.ttf'),
+    'Rubik-700': require('./assets/fonts/Rubik-Bold.ttf'),
   });
 };
 

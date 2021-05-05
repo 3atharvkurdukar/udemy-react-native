@@ -13,7 +13,8 @@ export default Input;
 
 const styles = StyleSheet.create({
   input: {
-    height: 30,
+    fontSize: 20,
+    height: 40,
     borderBottomColor: 'grey',
     borderBottomWidth: 2,
     marginVertical: 12,
