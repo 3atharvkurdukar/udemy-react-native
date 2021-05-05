@@ -15,12 +15,19 @@ const generateRandomBetween = (min, max, exclude) => {
   }
 };
 
-const GameScreen = ({ userChoice }) => {
+const GameScreen = ({ userChoice, onGameOver }) => {
   const [currentGuess, setCurrentGuess] = useState(
     generateRandomBetween(1, 100, userChoice)
   );
+  const [rounds, setRounds] = useState(0);
   const currentMin = useRef(1);
   const currentMax = useRef(100);
+
+  useEffect(() => {
+    if (currentGuess === userChoice) {
+      onGameOver(rounds);
+    }
+  }, [currentGuess]);
 
   const nextGuessHandler = (direction) => {
     if (
@@ -43,6 +50,7 @@ const GameScreen = ({ userChoice }) => {
       currentGuess
     );
     setCurrentGuess(nextNum);
+    setRounds((rounds) => rounds + 1);
   };
 
   return (
