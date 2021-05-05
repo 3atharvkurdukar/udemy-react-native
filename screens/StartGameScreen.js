@@ -13,7 +13,7 @@ import Input from '../components/Input';
 import NumberContainer from '../components/NumberContainer';
 import colors from '../constants/colors';
 
-const StartGameScreen = () => {
+const StartGameScreen = ({ onStartGame }) => {
   const [enteredValue, setEnteredValue] = useState('');
   const [selectedNumber, setSelectedNumber] = useState();
   const [confirmed, setConfirmed] = useState(false);
@@ -81,7 +81,7 @@ const StartGameScreen = () => {
               <Button
                 title="START GAME"
                 color={colors.primary}
-                onPress={null}
+                onPress={onStartGame.bind(this, selectedNumber)}
               />
             </View>
           </Card>
