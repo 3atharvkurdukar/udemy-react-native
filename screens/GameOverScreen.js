@@ -16,8 +16,12 @@ const GameOverScreen = ({ rounds, userNumber, onNewGame }) => {
           }}
         />
       </View>
-      <Text style={defaultStyles.body}>No. of Rounds: {rounds}</Text>
-      <Text style={defaultStyles.body}>The Number: {userNumber}</Text>
+      <Text style={defaultStyles.body}>
+        No. of Rounds: <Text style={styles.highlight}>{rounds}</Text>
+      </Text>
+      <Text style={defaultStyles.body}>
+        The Number: <Text style={styles.highlight}>{userNumber}</Text>
+      </Text>
       <Button title="New Game" onPress={onNewGame} />
     </View>
   );
@@ -45,5 +49,9 @@ const styles = StyleSheet.create({
   img: {
     width: '100%',
     height: '100%',
+  },
+  highlight: {
+    color: colors.primary,
+    fontFamily: 'Rubik-700',
   },
 });
