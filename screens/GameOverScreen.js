@@ -8,7 +8,13 @@ const GameOverScreen = ({ rounds, userNumber, onNewGame }) => {
     <View style={styles.screen}>
       <Text style={defaultStyles.header}>GAME OVER</Text>
       <View style={styles.imgContainer}>
-        <Image style={styles.img} source={require('../assets/success.png')} />
+        <Image
+          style={styles.img}
+          source={{
+            uri:
+              'https://www.telegraph.co.uk/content/dam/Travel/ski/K2-mountain-Andrzej-Bargiel-first-ski-descent-by-Piotr-Pawlus-Red-Bull-Content-Pool.jpg',
+          }}
+        />
       </View>
       <Text style={defaultStyles.body}>No. of Rounds: {rounds}</Text>
       <Text style={defaultStyles.body}>The Number: {userNumber}</Text>
