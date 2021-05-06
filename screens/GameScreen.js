@@ -1,12 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {
-  Alert,
-  Button,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Alert, FlatList, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Card from '../components/Card';
 import NumberContainer from '../components/NumberContainer';
@@ -82,14 +75,19 @@ const GameScreen = ({ userChoice, onGameOver }) => {
         </MainButton>
       </Card>
       <View style={styles.listContainer}>
-        <ScrollView contentContainerStyle={styles.list}>
-          {guesses.map((guess, i) => (
-            <View key={i} style={styles.listItem}>
-              <Text style={defaultStyles.body}>{guesses.length - i}.</Text>
-              <Text style={defaultStyles.body}>{guess}</Text>
+        <FlatList
+          contentContainerStyle={styles.list}
+          data={guesses}
+          renderItem={(itemData) => (
+            <View style={styles.listItem}>
+              <Text style={defaultStyles.body}>
+                {guesses.length - itemData.index}.
+              </Text>
+              <Text style={defaultStyles.body}>{itemData.item}</Text>
             </View>
-          ))}
-        </ScrollView>
+          )}
+          keyExtractor={(item) => item.toString()}
+        />
       </View>
     </View>
   );
@@ -113,11 +111,10 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     flex: 1,
-    width: '80%',
+    width: '40%',
   },
   list: {
     flexGrow: 1,
-    alignItems: 'center',
     justifyContent: 'flex-end',
   },
   listItem: {
@@ -130,6 +127,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '50%',
+    width: '100%',
   },
 });
