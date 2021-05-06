@@ -1,5 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Alert, Button, StyleSheet, Text, View } from 'react-native';
+import {
+  Alert,
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Card from '../components/Card';
 import NumberContainer from '../components/NumberContainer';
@@ -19,16 +26,16 @@ const generateRandomBetween = (min, max, exclude) => {
 };
 
 const GameScreen = ({ userChoice, onGameOver }) => {
-  const [currentGuess, setCurrentGuess] = useState(
-    generateRandomBetween(1, 100, userChoice)
-  );
-  const [rounds, setRounds] = useState(0);
+  const initialGuess = generateRandomBetween(1, 100, userChoice);
+
+  const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [guesses, setGuesses] = useState([initialGuess]);
   const currentMin = useRef(1);
   const currentMax = useRef(100);
 
   useEffect(() => {
     if (currentGuess === userChoice) {
-      onGameOver(rounds);
+      onGameOver(guesses.length);
     }
   }, [currentGuess]);
 
@@ -45,7 +52,7 @@ const GameScreen = ({ userChoice, onGameOver }) => {
     if (direction === 'lower') {
       currentMax.current = currentGuess;
     } else if (direction === 'higher') {
-      currentMin.current = currentGuess;
+      currentMin.current = currentGuess + 1;
     }
     const nextNum = generateRandomBetween(
       currentMin.current,
@@ -53,7 +60,7 @@ const GameScreen = ({ userChoice, onGameOver }) => {
       currentGuess
     );
     setCurrentGuess(nextNum);
-    setRounds((rounds) => rounds + 1);
+    setGuesses((guesses) => [nextNum, ...guesses]);
   };
 
   return (
@@ -74,6 +81,16 @@ const GameScreen = ({ userChoice, onGameOver }) => {
           <Ionicons name="md-add" />
         </MainButton>
       </Card>
+      <View style={styles.list}>
+        <ScrollView>
+          {guesses.map((guess, i) => (
+            <View key={i} style={styles.listItem}>
+              <Text style={defaultStyles.body}>{guesses.length - i}.</Text>
+              <Text style={defaultStyles.body}>{guess}</Text>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
 };
@@ -93,5 +110,20 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: 300,
     maxWidth: '80%',
+  },
+  list: {
+    flex: 1,
+    width: '50%',
+  },
+  listItem: {
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'black',
+    shadowOffset: { width: 2, height: 4 },
+    padding: 16,
+    marginVertical: 16,
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
