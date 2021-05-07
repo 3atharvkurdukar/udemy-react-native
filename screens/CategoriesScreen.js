@@ -7,7 +7,8 @@ const CategoriesScreen = ({ navigation }) => {
       <Text>Categories Screen</Text>
       <Button
         title="Go to Meals"
-        onPress={() => navigation.navigate('CategoryMeals')}
+        onPress={() => navigation.navigate('CategoryMeals')} // Pushes the given screen into the stack
+        // onPress={() => navigation.replace('CategoryMeals')} // Replaces current screen with given
       />
     </View>
   );
