@@ -1,32 +1,39 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
+import colors from '../constants/colors';
 import { CATEGORIES } from '../data/dummyData';
 
-const renderGridItem = (itemData) => {
-  return (
-    <View style={styles.gridItem}>
-      <Text style={{ ...styles.gridItemTitle, color: itemData.item.color }}>
-        {itemData.item.title}
-      </Text>
-    </View>
-  );
-};
-
-const CategoriesScreen = () => {
+const CategoriesScreen = ({ navigation }) => {
+  const renderGridItem = (itemData) => {
+    return (
+      <TouchableOpacity
+        containerStyle={styles.gridItem}
+        onPress={() => navigation.navigate({ routeName: 'CategoryMeals' })}
+      >
+        <View>
+          <Text style={{ ...styles.gridItemTitle, color: itemData.item.color }}>
+            {itemData.item.title}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
   return (
     <FlatList numColumns={2} data={CATEGORIES} renderItem={renderGridItem} />
   );
 };
 
+CategoriesScreen.navigationOptions = {
+  headerTitle: 'Meal Categories',
+  headerStyle: {
+    backgroundColor: colors.primary,
+  },
+};
+
 export default CategoriesScreen;
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   gridItem: {
     flex: 1,
     margin: 16,
@@ -44,5 +51,6 @@ const styles = StyleSheet.create({
   gridItemTitle: {
     fontFamily: 'InterBold',
     fontSize: 22,
+    textAlign: 'center',
   },
 });
