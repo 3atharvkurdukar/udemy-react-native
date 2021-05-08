@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import CustomHeaderButton from '../components/HeaderButton';
 import colors from '../constants/colors';
 import { MEALS } from '../data/dummyData';
 
@@ -40,6 +42,15 @@ MealDetailsScreen.navigationOptions = ({ navigation }) => {
 
   return {
     title: meal.title,
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Favorite"
+          iconName="ios-star"
+          onPress={() => console.log('Mark as Favorite')}
+        />
+      </HeaderButtons>
+    ),
   };
 };
 
