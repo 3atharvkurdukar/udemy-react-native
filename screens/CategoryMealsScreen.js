@@ -15,7 +15,9 @@ const CategoryMealsScreen = ({ navigation }) => {
     return (
       <MealItem
         meal={itemData.item}
-        onSelectMeal={() => navigation.navigate('MealDetails')}
+        onSelectMeal={() =>
+          navigation.navigate('MealDetails', { mealId: itemData.item.id })
+        }
       />
     );
   };
