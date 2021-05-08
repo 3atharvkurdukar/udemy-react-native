@@ -19,10 +19,14 @@ const MealsNavigator = createStackNavigator(
   },
   {
     defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? colors.primary : 'white',
+      cardStyle: {
+        backgroundColor: colors.background,
       },
-      headerTintColor: Platform.OS === 'android' ? 'white' : colors.primary,
+      headerStyle: {
+        elevation: 0,
+        backgroundColor: colors.background,
+      },
+      headerTintColor: colors.primary,
       headerTitleStyle: {
         fontFamily: 'InterSemiBold',
       },
