@@ -1,21 +1,31 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import colors from '../constants/colors';
-import { CATEGORIES } from '../data/dummyData';
+import { FlatList } from 'react-native-gesture-handler';
+import MealItem from '../components/MealItem';
+import { MEALS, CATEGORIES } from '../data/dummyData';
 
 const CategoryMealsScreen = ({ navigation }) => {
+  const categoryId = navigation.getParam('categoryId');
+
+  const displayedMeals = MEALS.filter(
+    (meal) => meal.categoryIds.indexOf(categoryId) >= 0
+  );
+
+  const renderMealItem = (itemData) => {
+    return (
+      <MealItem
+        meal={itemData.item}
+        onSelectMeal={() => navigation.navigate('MealDetails')}
+      />
+    );
+  };
+
   return (
     <View style={styles.screen}>
-      <Text>Category Meals Screen</Text>
-      <Button
-        title="View Meal Details"
-        onPress={() => navigation.navigate('MealDetails')} // Works everywhere
-        // onPress={() => navigation.push('MealDetails')}  // Works with stack navigator
-      />
-      <Button
-        title="Back"
-        onPress={() => navigation.goBack()} // Works everywhere
-        // onPress={() => navigation.pop()} // Works with stack navigator
+      <FlatList
+        data={displayedMeals}
+        renderItem={renderMealItem}
+        style={styles.mealsList}
       />
     </View>
   );
@@ -37,5 +47,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  mealsList: {
+    width: '100%',
+    paddingHorizontal: 16,
   },
 });
