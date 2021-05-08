@@ -27,12 +27,6 @@ CategoryMealsScreen.navigationOptions = ({ navigation }) => {
 
   return {
     title: selectedCategory.title,
-    headerStyle: {
-      backgroundColor: colors.primary,
-    },
-    headerTitleStyle: {
-      fontFamily: 'InterSemiBold',
-    },
   };
 };
 

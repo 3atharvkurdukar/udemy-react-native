@@ -32,16 +32,6 @@ const CategoriesScreen = ({ navigation }) => {
   );
 };
 
-CategoriesScreen.navigationOptions = {
-  title: 'Meal Categories',
-  headerStyle: {
-    backgroundColor: colors.primary,
-  },
-  headerTitleStyle: {
-    fontFamily: 'InterSemiBold',
-  },
-};
-
 export default CategoriesScreen;
 
 const styles = StyleSheet.create({
