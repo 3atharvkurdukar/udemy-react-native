@@ -9,7 +9,10 @@ const MealList = ({ mealsData, navigation }) => {
       <MealItem
         meal={itemData.item}
         onSelectMeal={() =>
-          navigation.navigate('MealDetails', { mealId: itemData.item.id })
+          navigation.navigate('MealDetails', {
+            mealId: itemData.item.id,
+            mealTitle: itemData.item.title,
+          })
         }
       />
     );

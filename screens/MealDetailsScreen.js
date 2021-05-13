@@ -1,15 +1,15 @@
 import React from 'react';
-import { Button, Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import DefaultText from '../components/DefaultText';
 import CustomHeaderButton from '../components/HeaderButton';
 import colors from '../constants/colors';
-import { MEALS } from '../data/dummyData';
 
 const MealDetailsScreen = ({ navigation }) => {
+  const meals = useSelector((state) => state.meals.meals);
   const mealId = navigation.getParam('mealId');
-  const meal = MEALS.find((meal) => meal.id === mealId);
+  const meal = meals.find((meal) => meal.id === mealId);
 
   return (
     <ScrollView style={styles.screen}>
@@ -44,10 +44,10 @@ const MealDetailsScreen = ({ navigation }) => {
 
 MealDetailsScreen.navigationOptions = ({ navigation }) => {
   const mealId = navigation.getParam('mealId');
-  const meal = MEALS.find((meal) => meal.id === mealId);
+  const mealTitle = navigation.getParam('mealTitle');
 
   return {
-    title: meal.title,
+    title: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item

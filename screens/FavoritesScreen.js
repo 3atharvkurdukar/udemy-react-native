@@ -1,18 +1,16 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useSelector } from 'react-redux';
 import MealList from '../components/MealList';
-import { MEALS } from '../data/dummyData';
 import CustomHeaderButton from '../components/HeaderButton';
 
 const FavoritesScreen = ({ navigation }) => {
-  const mealIds = ['m1', 'm3', 'm4'];
-
-  const displayedMeals = MEALS.filter((meal) => mealIds.indexOf(meal.id) >= 0);
+  const favMeals = useSelector((state) => state.meals.favoriteMeals);
 
   return (
     <View style={styles.screen}>
-      <MealList mealsData={displayedMeals} navigation={navigation} />
+      <MealList mealsData={favMeals} navigation={navigation} />
     </View>
   );
 };
