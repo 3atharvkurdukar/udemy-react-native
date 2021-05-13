@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
 import MealsNavigator from './navigation/MealsNavigator';
+import { Provider } from 'react-redux';
+import store from './store';
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -25,5 +27,9 @@ export default function App() {
     );
   }
 
-  return <MealsNavigator />;
+  return (
+    <Provider store={store}>
+      <MealsNavigator />
+    </Provider>
+  );
 }
