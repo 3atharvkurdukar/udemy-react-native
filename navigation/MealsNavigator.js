@@ -25,6 +25,9 @@ const defaultStackNavOptions = {
     headerTitleStyle: {
       fontFamily: 'InterSemiBold',
     },
+    headerBackTitleStyle: {
+      fontFamily: 'InterRegular',
+    },
   },
 };
 
@@ -85,6 +88,9 @@ const MealsFavTabNavigator =
           inactiveBackgroundColor: colors.background,
           activeTintColor: colors.primary,
           inactiveTintColor: 'grey',
+          labelStyle: {
+            fontFamily: 'InterSemiBold',
+          },
         },
       });
 
