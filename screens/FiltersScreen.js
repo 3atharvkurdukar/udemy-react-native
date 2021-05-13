@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import FilterSwitch from '../components/FilterSwitch';
 import CustomHeaderButton from '../components/HeaderButton';
 
-const FiltersScreen = () => {
+const FiltersScreen = ({ navigation }) => {
   const [isGlutenFree, setIsGlutenFree] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
-  const [isVegetarian, setIsVegetarian] = useState(false);
   const [isVegan, setIsVegan] = useState(false);
+  const [isVegetarian, setIsVegetarian] = useState(false);
+
+  const saveFilters = useCallback(() => {
+    const appliedFilters = {
+      isGlutenFree: isGlutenFree,
+      isLactoseFree: isLactoseFree,
+      isVegan: isVegan,
+      isVegetarian: isVegetarian,
+    };
+    console.log(appliedFilters);
+  }, [isGlutenFree, isLactoseFree, isVegetarian, isVegan]);
+
+  useEffect(() => {
+    navigation.setParams({ save: saveFilters });
+  }, [saveFilters]);
 
   return (
     <View style={styles.screen}>
@@ -24,14 +38,14 @@ const FiltersScreen = () => {
         onChange={(newVal) => setIsLactoseFree(newVal)}
       />
       <FilterSwitch
-        label="Vegetarian"
-        value={isVegetarian}
-        onChange={(newVal) => setIsVegetarian(newVal)}
-      />
-      <FilterSwitch
         label="Vegan"
         value={isVegan}
         onChange={(newVal) => setIsVegan(newVal)}
+      />
+      <FilterSwitch
+        label="Vegetarian"
+        value={isVegetarian}
+        onChange={(newVal) => setIsVegetarian(newVal)}
       />
     </View>
   );
@@ -58,6 +72,15 @@ FiltersScreen.navigationOptions = ({ navigation }) => ({
         title="Favorite"
         iconName="ios-menu"
         onPress={() => navigation.toggleDrawer()}
+      />
+    </HeaderButtons>
+  ),
+  headerRight: () => (
+    <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+      <Item
+        title="Favorite"
+        iconName="ios-save"
+        onPress={navigation.getParam('save')}
       />
     </HeaderButtons>
   ),
