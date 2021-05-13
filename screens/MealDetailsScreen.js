@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import DefaultText from '../components/DefaultText';
 import CustomHeaderButton from '../components/HeaderButton';
 import colors from '../constants/colors';
 import { MEALS } from '../data/dummyData';
@@ -13,22 +14,27 @@ const MealDetailsScreen = ({ navigation }) => {
   return (
     <ScrollView style={styles.screen}>
       <Image source={{ uri: meal.imageUrl }} style={styles.mealImg} />
+      <View style={styles.mealDetails}>
+        <DefaultText>{meal.duration} min</DefaultText>
+        <DefaultText>{meal.complexity.toUpperCase()}</DefaultText>
+        <DefaultText>{meal.affordability.toUpperCase()}</DefaultText>
+      </View>
       <View style={styles.mealInfo}>
         <Text style={styles.title}>{meal.title}</Text>
         <Text style={styles.subheader}>Ingredients</Text>
         <View style={styles.list}>
           {meal.ingredients.map((ing, i) => (
-            <Text key={i} style={styles.listItem}>
+            <DefaultText key={i} style={styles.listItem}>
               {ing}
-            </Text>
+            </DefaultText>
           ))}
         </View>
         <Text style={styles.subheader}>Steps</Text>
         <View style={styles.list}>
           {meal.steps.map((step, i) => (
-            <Text key={i} style={styles.listItem}>
+            <DefaultText key={i} style={styles.listItem}>
               {step}
-            </Text>
+            </DefaultText>
           ))}
         </View>
       </View>
@@ -62,6 +68,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 250,
   },
+  mealDetails: {
+    flexDirection: 'row',
+    padding: 16,
+    justifyContent: 'space-between',
+  },
   mealInfo: {
     width: '100%',
     padding: 16,
@@ -84,7 +95,6 @@ const styles = StyleSheet.create({
   },
   listItem: {
     color: 'lightgrey',
-    fontFamily: 'InterRegular',
     fontSize: 18,
   },
 });
