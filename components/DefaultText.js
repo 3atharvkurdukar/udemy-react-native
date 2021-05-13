@@ -12,7 +12,7 @@ export default DefaultText;
 const styles = StyleSheet.create({
   text: {
     fontFamily: 'InterRegular',
-    fontSize: 14,
-    color: 'white',
+    fontSize: 16,
+    color: 'lightgrey',
   },
 });
