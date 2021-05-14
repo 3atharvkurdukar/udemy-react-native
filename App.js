@@ -4,6 +4,9 @@ import * as Font from 'expo-font';
 import MealsNavigator from './navigation/MealsNavigator';
 import { Provider } from 'react-redux';
 import store from './store';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreAllLogs(true);
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
