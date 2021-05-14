@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector } from 'react-redux';
 import MealList from '../components/MealList';
@@ -7,6 +7,17 @@ import CustomHeaderButton from '../components/HeaderButton';
 
 const FavoritesScreen = ({ navigation }) => {
   const favMeals = useSelector((state) => state.meals.favoriteMeals);
+
+  if (!favMeals || favMeals?.length === 0) {
+    return (
+      <View style={styles.screen}>
+        <Text style={styles.error}>
+          No favorites found.{'\n'}
+          Try adding some!
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.screen}>
@@ -20,6 +31,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  error: {
+    color: 'lightgrey',
+    fontFamily: 'InterSemiBold',
+    fontSize: 24,
+    textAlign: 'center',
+    paddingHorizontal: 16,
   },
 });
 
