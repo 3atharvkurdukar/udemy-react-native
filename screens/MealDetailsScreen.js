@@ -9,11 +9,13 @@ import colors from '../constants/colors';
 import { toggleFavorite } from '../store/actions';
 
 const MealDetailsScreen = ({ navigation }) => {
-  const meals = useSelector((state) => state.meals.meals);
-  const dispatch = useDispatch();
-
   const mealId = navigation.getParam('mealId');
+  const meals = useSelector((state) => state.meals.meals);
   const meal = meals.find((meal) => meal.id === mealId);
+  const isFavorite = useSelector((state) =>
+    state.meals.favoriteMeals.some((meal) => meal.id === mealId)
+  );
+  const dispatch = useDispatch();
 
   const toggleFavoriteHandler = useCallback(() => {
     dispatch(toggleFavorite(mealId));
@@ -22,6 +24,10 @@ const MealDetailsScreen = ({ navigation }) => {
   useEffect(() => {
     navigation.setParams({ toggleFav: toggleFavoriteHandler });
   }, [toggleFavoriteHandler]);
+
+  useEffect(() => {
+    navigation.setParams({ isFavorite: isFavorite });
+  }, [isFavorite]);
 
   return (
     <ScrollView style={styles.screen}>
@@ -57,6 +63,7 @@ const MealDetailsScreen = ({ navigation }) => {
 MealDetailsScreen.navigationOptions = ({ navigation }) => {
   const mealTitle = navigation.getParam('mealTitle');
   const toggleFavoriteHandler = navigation.getParam('toggleFav');
+  const isFavorite = navigation.getParam('isFavorite');
 
   return {
     title: mealTitle,
@@ -64,7 +71,7 @@ MealDetailsScreen.navigationOptions = ({ navigation }) => {
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title="Favorite"
-          iconName="ios-star"
+          iconName={isFavorite ? 'ios-star' : 'ios-star-outline'}
           onPress={toggleFavoriteHandler}
         />
       </HeaderButtons>

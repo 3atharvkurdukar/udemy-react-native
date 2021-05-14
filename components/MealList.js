@@ -1,10 +1,16 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { useSelector } from 'react-redux';
 import MealItem from './MealItem';
 
 const MealList = ({ mealsData, navigation }) => {
+  const favoriteMeals = useSelector((state) => state.meals.favoriteMeals);
+
   const renderMealItem = (itemData) => {
+    const isFavorite = favoriteMeals.some(
+      (meal) => meal.id === itemData.item.id
+    );
     return (
       <MealItem
         meal={itemData.item}
@@ -12,6 +18,7 @@ const MealList = ({ mealsData, navigation }) => {
           navigation.navigate('MealDetails', {
             mealId: itemData.item.id,
             mealTitle: itemData.item.title,
+            isFavorite: isFavorite,
           })
         }
       />
