@@ -12,9 +12,13 @@ const ProductsNavigator = createStackNavigator(
       headerStyle: {
         backgroundColor: colors.background,
         elevation: 0,
+        borderWidth: 0,
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
       },
       headerTitleAlign: 'center',
-      headerTintColor: colors.primary,
+      headerTintColor: colors.darkText,
       cardStyle: {
         backgroundColor: colors.background,
       },

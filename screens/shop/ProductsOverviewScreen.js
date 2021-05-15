@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
+import ProductItem from '../../components/ProductItem';
 import defaultStyles from '../../constants/defaultStyles';
 
 const ProductsOverviewScreen = () => {
@@ -11,12 +12,15 @@ const ProductsOverviewScreen = () => {
     <View style={defaultStyles.screen}>
       <FlatList
         data={products}
-        renderItem={(itemData) => <Text>{itemData.item.title}</Text>}
+        renderItem={(itemData) => <ProductItem item={itemData.item} />}
       />
     </View>
   );
 };
+const styles = StyleSheet.create({});
+
+ProductsOverviewScreen.navigationOptions = {
+  headerTitle: 'All Products',
+};
 
 export default ProductsOverviewScreen;
-
-const styles = StyleSheet.create({});
