@@ -5,7 +5,7 @@ const initialState = {
   userProducts: PRODUCTS.filter((product) => product.ownerId === 'u1'),
 };
 
-export const productReducer = (state, action) => {
+export const productsReducer = (state = initialState, action) => {
   switch (action.types) {
     default:
       return state;
