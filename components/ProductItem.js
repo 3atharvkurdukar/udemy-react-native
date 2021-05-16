@@ -9,27 +9,27 @@ const ProductItem = ({ item, onAddToCart, onViewDetails }) => {
     <View style={styles.itemContainer}>
       <TouchableOpacity onPress={onViewDetails} activeOpacity={0.8}>
         <Image style={styles.image} source={{ uri: item.imageUrl }} />
-      </TouchableOpacity>
-      <View style={styles.itemInfo}>
-        <TouchableOpacity onPress={onViewDetails}>
-          <Text style={styles.title} numberOfLines={1}>
-            {item.title}
-          </Text>
-          <Text style={styles.price} numberOfLines={1}>
-            ${item.price.toFixed(2)}
-          </Text>
-        </TouchableOpacity>
-        <View>
-          <TouchableOpacity onPress={onAddToCart}>
-            <Ionicons
-              style={styles.cart}
-              size={24}
-              name="cart-outline"
-              color={colors.accent}
-            />
+        <View style={styles.itemInfo}>
+          <TouchableOpacity onPress={onViewDetails}>
+            <Text style={styles.title} numberOfLines={1}>
+              {item.title}
+            </Text>
+            <Text style={styles.price} numberOfLines={1}>
+              ${item.price.toFixed(2)}
+            </Text>
           </TouchableOpacity>
+          <View>
+            <TouchableOpacity onPress={onAddToCart}>
+              <Ionicons
+                style={styles.cart}
+                size={24}
+                name="cart-outline"
+                color={colors.accent}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

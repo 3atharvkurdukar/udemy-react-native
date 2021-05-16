@@ -3,7 +3,7 @@ const colors = {
   accent: '#FC3637',
   background: '#F7F8FB',
   lightGrey: '#D8D8D8',
-  grey: '#B8B8B9',
+  grey: '#9E9E9E',
   darkText: '#001833',
 };
 
