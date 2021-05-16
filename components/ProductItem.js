@@ -49,12 +49,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-SemiBold',
     color: colors.darkText,
   },
   price: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontFamily: 'Poppins-Bold',
     color: colors.primary,
   },
   itemInfo: {

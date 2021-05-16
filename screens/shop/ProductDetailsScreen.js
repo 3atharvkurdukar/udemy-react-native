@@ -16,12 +16,16 @@ const ProductDetailsScreen = ({ navigation }) => {
     <View style={{ ...defaultStyles.screen, paddingHorizontal: 0 }}>
       <Image style={styles.image} source={{ uri: product.imageUrl }} />
       <View style={styles.header}>
-        <Text style={styles.title} numberOfLines={1}>
-          {product.title}
-        </Text>
-        <Text style={styles.price} numberOfLines={1}>
-          ${product.price}
-        </Text>
+        <View>
+          <Text style={styles.title} numberOfLines={1}>
+            {product.title}
+          </Text>
+        </View>
+        <View>
+          <Text style={styles.price} numberOfLines={1}>
+            ${product.price}
+          </Text>
+        </View>
       </View>
       <ScrollView containerStyle={styles.descriptionContainer}>
         <Text style={styles.description}>{product.description}</Text>
@@ -46,15 +50,16 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 16,
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-SemiBold',
     color: colors.darkText,
   },
   price: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
     color: colors.primary,
   },
   descriptionContainer: {
@@ -65,6 +70,7 @@ const styles = StyleSheet.create({
     padding: 16,
     fontSize: 16,
     color: colors.grey,
+    fontFamily: 'Poppins-Regular',
   },
   action: {
     width: '100%',

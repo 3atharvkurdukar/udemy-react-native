@@ -18,7 +18,7 @@ const ProductsNavigator = createStackNavigator(
         shadowRadius: 0,
       },
       headerTitleStyle: {
-        fontWeight: 'bold',
+        fontFamily: 'Poppins-Bold',
       },
       headerTitleAlign: 'center',
       headerTintColor: colors.darkText,
