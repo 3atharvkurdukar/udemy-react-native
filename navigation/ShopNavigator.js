@@ -20,6 +20,9 @@ const ProductsNavigator = createStackNavigator(
       headerTitleStyle: {
         fontFamily: 'Poppins-Bold',
       },
+      headerBackTitleStyle: {
+        fontFamily: 'Poppins-Regular',
+      },
       headerTitleAlign: 'center',
       headerTintColor: colors.darkText,
       cardStyle: {
