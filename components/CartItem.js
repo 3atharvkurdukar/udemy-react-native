@@ -22,6 +22,11 @@ const CartItem = ({ item, onDelete, onViewDetails, onChangeQuantity }) => {
           ${item.price.toFixed(2)}
         </Text>
       </View>
+      <View style={styles.quantityContainer}>
+        <Text style={styles.quantity} numberOfLines={1}>
+          x {item.quantity}
+        </Text>
+      </View>
       <TouchableOpacity
         containerStyle={styles.deleteBtnContainer}
         onPress={onDelete}
@@ -60,12 +65,21 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-SemiBold',
     color: colors.primary,
   },
+  quantity: {
+    fontSize: 18,
+    fontFamily: 'Poppins-Regular',
+    color: colors.grey,
+  },
   imageContainer: {
     width: '20%',
   },
   infoContainer: {
-    width: '70%',
+    width: '60%',
     paddingHorizontal: 12,
+  },
+  quantityContainer: {
+    width: '10%',
+    alignItems: 'flex-end',
   },
   deleteBtnContainer: {
     width: '10%',

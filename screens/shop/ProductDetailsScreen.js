@@ -1,13 +1,18 @@
 import React from 'react';
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import colors from '../../constants/colors';
 import defaultStyles from '../../constants/defaultStyles';
+import CustomHeaderButton from '../../components/HeaderButton';
+import { addToCart } from '../../store/actions/cart';
 
 const ProductDetailsScreen = ({ navigation }) => {
   const productId = navigation.getParam('prodId');
+  const dispatch = useDispatch();
+
   const product = useSelector((state) =>
     state.products.availableProducts.find((prod) => prod.id === productId)
   );
@@ -31,7 +36,10 @@ const ProductDetailsScreen = ({ navigation }) => {
         <Text style={styles.description}>{product.description}</Text>
       </ScrollView>
       <View style={styles.action}>
-        <TouchableOpacity containerStyle={styles.cartBtn}>
+        <TouchableOpacity
+          containerStyle={styles.cartBtn}
+          onPress={() => dispatch(addToCart(product.id, product.price, 1))}
+        >
           <Ionicons style={styles.cartIcon} name="cart-outline" />
         </TouchableOpacity>
       </View>
@@ -102,6 +110,17 @@ ProductDetailsScreen.navigationOptions = ({ navigation }) => {
     headerBackTitleStyle: {
       backgroundColor: colors.grey,
     },
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Favorite"
+          iconName="cart"
+          onPress={() => {
+            navigation.navigate('Cart');
+          }}
+        />
+      </HeaderButtons>
+    ),
   };
 };
 

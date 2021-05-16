@@ -17,17 +17,17 @@ const ProductsOverviewScreen = ({ navigation }) => {
       <FlatList
         style={styles.productList}
         data={products}
-        renderItem={(itemData) => (
+        renderItem={({ item }) => (
           <ProductItem
-            item={itemData.item}
+            item={item}
             onViewDetails={() => {
               navigation.navigate('ProductDetails', {
-                prodId: itemData.item.id,
-                prodTitle: itemData.item.title,
+                prodId: item.id,
+                prodTitle: item.title,
               });
             }}
             onAddToCart={() => {
-              dispatch(addToCart(itemData.item.id, 1));
+              dispatch(addToCart(item.id, item.price, 1));
             }}
           />
         )}
