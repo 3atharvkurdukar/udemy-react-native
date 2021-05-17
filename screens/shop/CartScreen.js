@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CartItem from '../../components/CartItem';
 import colors from '../../constants/colors';
 import defaultStyles from '../../constants/defaultStyles';
+import { removeFromCart } from '../../store/actions/cart';
 
-const CartScreen = () => {
+const CartScreen = ({ navigation }) => {
   const items = useSelector((state) => state.cart.items);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const cartItems = useSelector((state) =>
@@ -17,12 +18,28 @@ const CartScreen = () => {
         quantity: items[prod.id],
       }))
   );
+  const dispatch = useDispatch();
+
   return (
     <View style={defaultStyles.screen}>
+      <Text>{JSON.stringify(items)}</Text>
       <FlatList
         style={styles.itemList}
         data={cartItems}
-        renderItem={({ item }) => <CartItem item={item} />}
+        renderItem={({ item }) => (
+          <CartItem
+            item={item}
+            onViewDetails={() => {
+              navigation.navigate('ProductDetails', {
+                prodId: item.id,
+                prodTitle: item.title,
+              });
+            }}
+            onDelete={() => {
+              dispatch(removeFromCart(item.id, item.price, item.quantity));
+            }}
+          />
+        )}
       />
       <View style={styles.totalContainer}>
         <Text style={styles.total}>Total: ${totalAmount.toFixed(2)}</Text>

@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import colors from '../constants/colors';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const CartItem = ({ item, onDelete, onViewDetails, onChangeQuantity }) => {
+const CartItem = ({ item, onDelete, onViewDetails }) => {
   return (
     <View style={styles.itemContainer}>
       <TouchableOpacity
